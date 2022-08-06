@@ -1,5 +1,3 @@
-from random import shuffle
-from turtle import forward
 import torch
 from torchvision import datasets
 from torchvision.transforms import ToTensor, Lambda
@@ -31,7 +29,7 @@ test_data = datasets.FashionMNIST(root="data",
 #train, test = torch.utils.data.random_split(ds, [n_train, n_test])
 
 #DataLoader ... collect several data together in one batch to prevent local minimum
-batch_size = 100
+batch_size = 10
 train_loader = torch.utils.data.DataLoader(train_data, batch_size, shuffle=True)
 test_loader = torch.utils.data.DataLoader(test_data, batch_size)
 
@@ -121,7 +119,7 @@ def test_loop(dataloader, model, criterion):
     print(f"Accuracy: {(100*acc):>0.2f}%, Avg loss: {loss:>8f} \n")
 
 
-for epoch in range(5):
+for epoch in range(10):
     print(f"Epoch {epoch+1} --------------------")
     train_loop(train_loader, net, criterion, optimizer, batch_size)
     test_loop(test_loader, net, criterion)
