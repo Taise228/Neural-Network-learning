@@ -24,9 +24,9 @@ test_data = datasets.FashionMNIST(root="data",
 # target_transform ... transform target value computable in this neural system (in this case, make it into one-hot signal of tensor(float32))
 
 # divide dataset into the train section and the test section
-#n_train = int(len(ds) *  0.8)
-#n_test = len(ds) - n_train
-#train, test = torch.utils.data.random_split(ds, [n_train, n_test])
+"""n_train = int(len(ds) *  0.8)
+n_test = len(ds) - n_train
+train, test = torch.utils.data.random_split(ds, [n_train, n_test])"""
 
 #DataLoader ... collect several data together in one batch to prevent local minimum
 batch_size = 10
@@ -95,7 +95,7 @@ def train_loop(dataloader, model, criterion, optimizer, batch_size):
             #print("loss: {}".format(loss.item()))
             y_label = torch.argmax(y, dim=1)   # the max target num should be a category this data belongs to
             t_label = torch.argmax(t, dim=1)
-            acc += torch.sum(y_label == t_label).item()   # accurate label
+            acc += torch.sum(y_label == t_label).item()   # num of accurate label
             loss.backward()
             optimizer.step()
     print("Accuracy: {}".format(acc/(len(dataloader)*batch_size)))
