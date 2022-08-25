@@ -17,6 +17,11 @@ b = np.array([[1,2,3],[4,5,6]])
 
 print(np.dot(a, b))   # product of matrices a and b
 
+c = np.array([1,1])   #shape = (2,)
+d = np.array([[1],[1]])   #shape = (2,1)
+print(np.dot(a, c), np.dot(a, d), sep="\n")
+#np.dot(a, c) becomes a special operation (matrix * vector). The answer is a vector, multiplied each column of a by c.
+
 def sigmoid(x):
     y = 1 / (1 + np.exp((-1)*x))
     return y
@@ -28,4 +33,4 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.title("sigmoid")
 plt.ylim(-0.1, 1.1)
-plt.show()
+#plt.show()
