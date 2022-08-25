@@ -119,7 +119,7 @@ def test_loop(dataloader, model, criterion):
     print(f"Accuracy: {(100*acc):>0.2f}%, Avg loss: {loss:>8f} \n")
 
 
-for epoch in range(10):
+for epoch in range(5):
     print(f"Epoch {epoch+1} --------------------")
     train_loop(train_loader, net, criterion, optimizer, batch_size)
-    test_loop(test_loader, net, criterion)
+    test_loop(train_loader, net, criterion)
