@@ -33,4 +33,11 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.title("sigmoid")
 plt.ylim(-0.1, 1.1)
-plt.show()
+#plt.show()
+
+def sum_squared_error(y: np.array, t: np.array):
+    return 0.5 * np.sum((y-t)**2)
+
+x = np.array([0,1,2,3,4,5])
+y = np.array([0,0,0,0,0,0])
+print(sum_squared_error(x, y))
