@@ -4,7 +4,7 @@ from torchvision.transforms import ToTensor, Lambda
 import torch.nn as nn
 import torch.nn.functional as F
 
-#device -> gpu
+# device -> gpu
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
 
@@ -20,7 +20,7 @@ test_data = datasets.FashionMNIST(root="data",
                            transform = ToTensor(),
                            target_transform = Lambda(lambda y: torch.zeros(10, dtype=torch.float32).scatter_(0, torch.tensor(y), value=1)))
 # contents of dataset = tuple(tensor(input), target)
-# transform ... transform bits sequence of the image into tensor for calculating
+# transform ... transform binary sequence of the image into tensor for calculating
 # target_transform ... transform target value computable in this neural system (in this case, make it into one-hot signal of tensor(float32))
 
 # divide dataset into the train section and the test section
@@ -28,22 +28,22 @@ test_data = datasets.FashionMNIST(root="data",
 n_test = len(ds) - n_train
 train, test = torch.utils.data.random_split(ds, [n_train, n_test])"""
 
-#DataLoader ... collect several data together in one batch to prevent local minimum
+# DataLoader ... collect several data together in one batch to prevent local minimum
 batch_size = 10
 train_loader = torch.utils.data.DataLoader(train_data, batch_size, shuffle=True)
 test_loader = torch.utils.data.DataLoader(test_data, batch_size)
 
-#define class of this Neural Network
+# define class of this Neural Network
 class neural_network(nn.Module):
     def __init__(self) -> None:
         super(neural_network, self).__init__()
         self.flatten = nn.Flatten()
         self.linear_mish_stack = nn.Sequential(
-            nn.Linear(28*28, 512),   #28*28 = input value num
+            nn.Linear(28*28, 512),   # 28*28 = input value num
             nn.Mish(),
             nn.Linear(512, 512),
             nn.Mish(),
-            nn.Linear(512, 10)   #10 = label num
+            nn.Linear(512, 10)   # 10 = label num
         )
     
     def forward(self, x):
@@ -57,7 +57,7 @@ criterion = F.cross_entropy
 
 net = neural_network().to(device=device)
 
-#select optimizer, that is, how to update parameters
+# select optimizer, that is, how to update parameters
 optimizer = torch.optim.SGD(net.parameters(), lr=0.1)
 # now use SGD as an optimizer, and learning rate (lr) = 0.1
 
