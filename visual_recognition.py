@@ -45,7 +45,7 @@ class neural_network(nn.Module):
             nn.Mish(),
             nn.Linear(512, 10)   # 10 = label num
         )
-    
+
     def forward(self, x):
         x = self.flatten(x)   # turn data into 1 dimension except for the first dimension which means batch_size
         x = self.linear_mish_stack(x)
